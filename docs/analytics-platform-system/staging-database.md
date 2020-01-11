@@ -62,18 +62,13 @@ For more information, see [Grant Permissions to load data](grant-permissions-to-
 The following example creates a staging database, Stagedb, for use with all loads on the appliance. Suppose you estimate that five replicated tables of size 5 GB each will load concurrently. This concurrency results in allocating at least 25 GB for the replicated size. Suppose you estimate that six distributed tables of sizes 100, 200, 400, 500, 500, and 550 GB will load concurrently. This concurrency results in allocating at least 2250 GB for the distributed table size.  
   
 ```sql  
-CREATE DATABASE Stagedb  
-WITH (  
-  
-    AUTOGROW = ON,  
-  
-    REPLICATED_SIZE = 25 GB,  
-  
-    DISTRIBUTED_SIZE = 2250 GB,  
-  
-    LOG_SIZE = 25 GB  
-  
-);  
+CREATE DATABASE StagingDB
+ON( NAME = Name,
+    FILENAME = PathToDB,
+    SIZE = 100MB,
+    MAXSIZE = UNLIMITED,
+    FILEGROWTH = 1MB
+);
 ```  
 
 <!-- MISSING LINKS
